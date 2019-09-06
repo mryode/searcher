@@ -10,6 +10,7 @@
     margin: 0 auto;
     justify-content: space-between;
     border: 1px solid black;
+    background: white;
 }
 
 .search-result:hover {
@@ -54,9 +55,6 @@
 .play-btn:focus {
     outline: none;
 }
-
-
-
 
 @media (max-width: 850px) {
     .video-details h1 {
