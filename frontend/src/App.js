@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
-import SearchResults from './SearchResults/SearchResults';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 
 import './App.css';
@@ -10,7 +9,6 @@ const App = () => {
         <div className="app-container">
             <div className="search-container">
                 <SearchBar />
-                <SearchResults />
             </div>
             <div className="main">
                 <div className="history-container">
