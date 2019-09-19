@@ -4,5 +4,9 @@
 }
 
 .search-bar input {
-    width: 100%;
+    width: 80%;
+}
+
+.search-bar button {
+    width: 20%;
 }

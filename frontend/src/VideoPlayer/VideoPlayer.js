@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './VideoPlayer.css';
 
-const VideoPlayer = () => {
+const VideoPlayer = ({ videoId }) => {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
 
@@ -10,8 +10,8 @@ const VideoPlayer = () => {
 
     // Requiremt for using YouTube iframe API - implemet onYouTubeIframeAPIReady
     window['onYouTubeIframeAPIReady'] = () => {
-        const player = new window.YT.Player('player', {
-            videoId: 'DyDfgMOUjCI',
+        window['player'] = new window.YT.Player('video-player', {
+            videoId: videoId,
             events: {
                 'onReady': onPlayerReady
             }
@@ -19,13 +19,19 @@ const VideoPlayer = () => {
     }
 
     function onPlayerReady(event) {
-        console.log('player ready - ', event);
+        console.log('videoId - videoPlayer', videoId);
         event.target.pauseVideo();
     }
 
+    useEffect(() => {
+        if (window.player) {
+            window.player.loadVideoById({videoId: videoId});
+        }
+    }, [videoId])
+
     return (
         <div className="video-container">
-            <div id="player"></div>
+            <div id="video-player"></div>
         </div>
     );
 };

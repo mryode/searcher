@@ -2,15 +2,19 @@ import React from 'react';
 
 import './SearchResult.css';
 
-const SearchResult = () => {
+const SearchResult = ({ videoId, videoTitle, videoThumbnailsUrl, videoViews, onPlayClick }) => {
+
     return (
         <div className="search-result">
-            <img className="video-thumbnail" src="https://i.ytimg.com/vi/DyDfgMOUjCI/hqdefault.jpg" alt="Video Thumbnail"/>
+            <img className="video-thumbnail" src={videoThumbnailsUrl} alt="Video Thumbnail" />
             <div className="video-details">
-                <h1>Billie Eilish - bad guy</h1>
-                <h4>Views: 100M</h4>
+                <h1>{videoTitle}</h1>
+                <h4>{`Views: ${videoViews}`}</h4>
             </div>
-            <button className="play-btn">Play!</button>
+            <button
+                className="play-btn"
+                onClick={() => onPlayClick(videoId)}
+            >Play!</button>
         </div>
     );
 };

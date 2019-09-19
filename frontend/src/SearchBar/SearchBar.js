@@ -1,27 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SearchResults from '../SearchResults/SearchResults';
 
 import './SearchBar.css';
+import OutsideClickDetector from '../OutsideClickDetector';
 
-const SearchBar = () => {
-    const [seachText, setSeachText] = useState("");
+const SearchBar = ({ onPlayClick }) => {
+    const [searchText, setSearchText] = useState("");
+    const [searchResult, setSearchResult] = useState([]);
+    const [showResults, setShowResults] = useState(false);
 
-    const handleInputChange = event => {
-        console.log(event.target.value);
-        setSeachText(event.target.value);
+    const input = useRef(null);
+
+    const handleKeyPress = event => {
+        if (event.key === 'Enter') {
+            searchText === event.target.value ? setShowResults(true) : setSearchText(event.target.value);
+        }
+    }
+
+    const handleSearchClick = () => {
+        searchText === input.current.value ? setShowResults(true) : setSearchText(input.current.value);
     };
 
+    // This effect will make request for the videos when 
+    // the searchText changes (on enter or button click).
+    useEffect(() => {
+        if (searchText) {
+            fetch(`http://localhost:3001/search/${searchText}`)
+                .then(resp => resp.json())
+                .then(json => {
+                    setSearchResult(json);
+                    setShowResults(true);
+                })
+                .catch(err => console.error(err));
+        }
+    }, [searchText])
+
+    const handleOutsideSearchBarClick = () => {
+        setShowResults(false);
+    }
+
+    const handlePlay = videoId => {
+        setShowResults(false);
+        onPlayClick(videoId);
+    }
+
     return (
-        <React.Fragment>
-            <div className="search-bar">
-                <input 
-                    type="text" 
-                    placeholder="Search on YouTube" 
-                    onChange={handleInputChange} 
-                />
-            </div>
-            <SearchResults searchText={seachText} />
-        </React.Fragment>
+        <OutsideClickDetector handleOutsideSearchBarClick={handleOutsideSearchBarClick}>
+            <React.Fragment>
+                <div className="search-bar">
+                    <input
+                        ref={input}
+                        type="text"
+                        placeholder="Search on YouTube"
+                        onKeyPress={handleKeyPress}
+                    />
+                    <button
+                        className="search-btn"
+                        onClick={handleSearchClick}
+                    >
+                        Search
+                    </button>
+                </div>
+                {showResults ? <SearchResults videoList={searchResult} onPlayClick={videoId => handlePlay(videoId)} /> : null}
+            </React.Fragment>
+        </OutsideClickDetector>
     );
 };
 

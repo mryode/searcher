@@ -3,13 +3,19 @@ import SearchResult from '../SearchResult/SearchResult';
 
 import './SearchResults.css';
 
-const SearchResults = ({searchText}) => {
+const SearchResults = ({ videoList, onPlayClick }) => {
     return (
         <div className="search-results-container">
-            {/* TODO: change to backend search request */}
-            <h3>Searching for: {searchText}</h3>
-    
-            <SearchResult />
+            {videoList.map(video => {
+                return <SearchResult
+                    key={video.videoId}
+                    videoId={video.videoId}
+                    videoTitle={video.videoTitle}
+                    videoThumbnailsUrl={video.videoThumbnails.url}
+                    videoViews={video.videoViews}
+                    onPlayClick={onPlayClick}
+                />
+            })}
         </div>
     );
 };
