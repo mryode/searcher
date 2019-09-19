@@ -13,7 +13,7 @@ const ResultItem = ({ videoId, videoTitle, videoThumbnailsUrl, videoViews, onPla
             </div>
             <button
                 className="play-btn"
-                onClick={() => onPlayClick(videoId)}
+                onClick={() => onPlayClick(videoId, videoTitle)}
             >Play!</button>
         </div>
     );
