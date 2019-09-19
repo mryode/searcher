@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './SearchResult.css';
+import './ResultItem.css';
 
-const SearchResult = ({ videoId, videoTitle, videoThumbnailsUrl, videoViews, onPlayClick }) => {
+const ResultItem = ({ videoId, videoTitle, videoThumbnailsUrl, videoViews, onPlayClick }) => {
 
     return (
         <div className="search-result">
@@ -19,4 +19,4 @@ const SearchResult = ({ videoId, videoTitle, videoThumbnailsUrl, videoViews, onP
     );
 };
 
-export default SearchResult;
+export default ResultItem;

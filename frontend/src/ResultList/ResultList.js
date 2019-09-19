@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchResult from '../SearchResult/SearchResult';
+import SearchResult from '../ResultItem/ResultItem';
 
-import './SearchResults.css';
+import './ResultList.css';
 
-const SearchResults = ({ videoList, onPlayClick }) => {
+const ResultList = ({ videoList, onPlayClick }) => {
     return (
         <div className="search-results-container">
             {videoList.map(video => {
@@ -20,4 +20,4 @@ const SearchResults = ({ videoList, onPlayClick }) => {
     );
 };
 
-export default SearchResults;
+export default ResultList;
