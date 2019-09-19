@@ -3,7 +3,7 @@ const youtubeApi = require('../youtube');
 
 const router = express.Router();
 
-router.get('/video/:searchString', (req, res) => {
+router.get('/:searchString', (req, res) => {
     const { searchString } = req.params;
 
     let searchParams = {
