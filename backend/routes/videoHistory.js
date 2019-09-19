@@ -10,20 +10,20 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const { videoId, videoName } = req.body;
+    const { videoId, videoTitle } = req.body;
 
     const newRecord = new History({
-        videoId, videoName
+        videoId, videoTitle
     });
 
     newRecord.save()
-        .then(document => res.send(`${document} was added to history!`))
+        .then(document => res.json(document))
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
 router.route('/:id').delete((req, res) => {
     History.findByIdAndDelete(req.params.id)
-        .then(document => res.send(`${document} removed!`))
+        .then(document => res.json(document))
         .catch(err => res.status(400).json(`Error: ${err}`));
 })
 
