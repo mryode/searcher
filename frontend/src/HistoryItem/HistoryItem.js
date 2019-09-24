@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './HistoryItem.css';
+
 const HistoryItem = ({ video, onDeleteClick }) => {
     return (
         <div className="history-record">

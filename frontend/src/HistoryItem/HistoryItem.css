@@ -1,0 +1,23 @@
+.history-record {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5% 0;
+}
+
+.history-record > button {
+    border: none;
+    width: 30%;
+    
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+    
+    background: none;
+    color: rgba(85,59,210,1);
+}
+
+.history-record > h3 {
+    padding-right: 5%;
+    width: 65%
+}

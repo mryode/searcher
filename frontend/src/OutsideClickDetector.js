@@ -8,7 +8,7 @@ const OutsideClickDetector = ({ children, handleOutsideSearchBarClick }) => {
     const wrapperRef = useRef(null);
     useOutsideClickDetector(wrapperRef, handleOutsideSearchBarClick);
 
-    return <div ref={wrapperRef}>{children}</div>;
+    return <div className="search-bar" ref={wrapperRef}>{children}</div>;
 }
 
 const useOutsideClickDetector = (ref, handleOutsideSearchBarClick) => {

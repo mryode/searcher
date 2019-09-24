@@ -5,7 +5,7 @@ const SearchInput = ({ handleKeyPress, handleSearchClick }) => {
     const input = useRef(null);
 
     return (
-        <div className="search-bar">
+        <div className="search-input">
             <input
                 ref={input}
                 type="text"

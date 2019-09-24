@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import SearchBar from './SearchBar/SearchBar';
@@ -33,21 +33,23 @@ const App = () => {
                 const { _id } = resp.data;
                 setHistoryList(historyList.filter(video => video._id !== _id));
             })
-            .catch(err => console.error(err));       
+            .catch(err => console.error(err));
     }
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/history/')
+            .then(resp => setHistoryList(resp.data))
+            .catch(err => console.error(err));
+    })
 
     return (
         <div className="app-container">
             <div className="search-container">
                 <SearchBar onPlayClick={handlePlayClick} />
             </div>
-            <div className="main">
-                <div className="history-container">
-                    <HistoryList historyList={historyList} onDeleteClick={handleDeleteClick} />
-                </div>
-                <div className="video-container">
-                    <VideoPlayer videoId={currentVideoPlaying} />
-                </div>
+            <div className="content-container">
+                <HistoryList historyList={historyList} onDeleteClick={handleDeleteClick} />
+                <VideoPlayer videoId={currentVideoPlaying} />
             </div>
         </div>
     );

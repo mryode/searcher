@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Segoe UI';
 }
 
 html, body, #root {
@@ -10,6 +10,14 @@ html, body, #root {
   height: 100%;
   width: 100%;
   /* overflow: auto; */
+}
+
+#root {
+  background-image: url('./2080886.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 code {

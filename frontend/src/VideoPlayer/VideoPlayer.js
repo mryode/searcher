@@ -2,30 +2,30 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './VideoPlayer.css';
 
 const VideoPlayer = ({ videoId }) => {
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
+    if (!window['onYouTubeIframeAPIReady']) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
 
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // Requiremt for using YouTube iframe API - implemet onYouTubeIframeAPIReady
-    window['onYouTubeIframeAPIReady'] = () => {
-        window['player'] = new window.YT.Player('video-player', {
-            videoId: videoId,
-            events: {
-                'onReady': onPlayerReady
-            }
-        });
+        // Requiremt for using YouTube iframe API - implemet onYouTubeIframeAPIReady
+        window['onYouTubeIframeAPIReady'] = () => {
+            window['player'] = new window.YT.Player('video-player', {
+                videoId: videoId,
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
     }
-
-    function onPlayerReady(event) {
-        console.log('videoId - videoPlayer', videoId);
+    const onPlayerReady = (event) => {
         event.target.pauseVideo();
     }
 
     useEffect(() => {
         if (window.player) {
-            window.player.loadVideoById({videoId: videoId});
+            window.player.loadVideoById({ videoId: videoId });
         }
     }, [videoId])
 

@@ -50,7 +50,8 @@ const SearchBar = ({ onPlayClick }) => {
         <OutsideClickDetector handleOutsideSearchBarClick={handleOutsideSearchBarClick}>
             <React.Fragment>
                 <SearchInput handleKeyPress={handleKeyPress} handleSearchClick={handleSearchClick} />
-                {showResults ? <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} /> : null}
+                {/* {showResults ? <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} /> : null} */}
+                <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} />
             </React.Fragment>
         </OutsideClickDetector>
     );

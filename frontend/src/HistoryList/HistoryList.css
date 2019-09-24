@@ -1,0 +1,43 @@
+:root {
+    --button-background-color: rgba(85,59,210,1);
+    --app-text-color: #eee;
+}
+
+.history-container {
+    color: var(--app-text-color, #eee);
+    height: 100%;
+    padding: 0 0 4% 4%;
+}
+
+.history-container h3 {
+    font-weight: 100;
+}
+
+.history-container > h1 {
+    margin: 15px 0;
+    height: 8%;
+}
+
+.history-list {
+    height: calc(92% - 30px);
+    overflow-y: scroll;
+    border-bottom-left-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 6px;
+    background-color: rgba(26,26,26,1);
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background-color: rgba(85,59,210,1);
+    border-radius: 3px;
+}
+
+.history-list .history-record {
+    border-bottom: 1px solid rgba(85,59,210,1);
+}
+
+.history-list .history-record:last-child {
+    border-bottom: none;
+}
