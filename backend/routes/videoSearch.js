@@ -9,6 +9,7 @@ router.get('/:searchString', (req, res) => {
     let searchParams = {
         part: 'snippet',
         type: 'video',
+        maxResults: 3,
         q: searchString
     };
 

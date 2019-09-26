@@ -1,20 +1,19 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-const SearchInput = ({ handleKeyPress, handleSearchClick }) => {
-
-    const input = useRef(null);
+const SearchInput = ({ inputRef, buttonRef, handleKeyPress, handleSearchClick }) => {
 
     return (
         <div className="search-input">
             <input
-                ref={input}
+                ref={inputRef}
                 type="text"
                 placeholder="Search on YouTube"
                 onKeyPress={handleKeyPress}
             />
             <button
+                ref={buttonRef}
                 className="search-btn"
-                onClick={() => handleSearchClick(input.current.value)}
+                onClick={() => handleSearchClick(inputRef.current.value)}
             >
                 Search
             </button>

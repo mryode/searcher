@@ -18,6 +18,11 @@
     border-bottom-left-radius: var(--border-radius, 20px);
 
     padding: 0;
+    padding-left: 20px;
+}
+
+.search-bar input:focus {
+    outline: none;
 }
 
 .search-bar button {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import ResultList from '../ResultList/ResultList';
@@ -11,6 +11,9 @@ const SearchBar = ({ onPlayClick }) => {
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [showResults, setShowResults] = useState(false);
+
+    const inputRef = useRef(null);
+    const buttonRef = useRef(null);
 
     const handleKeyPress = event => {
         if (event.key === 'Enter') {
@@ -36,6 +39,17 @@ const SearchBar = ({ onPlayClick }) => {
         }
     }, [searchText])
 
+    useEffect(() => {
+        if (showResults) {
+            inputRef.current.style.borderBottomLeftRadius = '0';
+            buttonRef.current.style.borderBottomRightRadius = '0';
+        }
+        else {
+            inputRef.current.style.borderBottomLeftRadius = '20px';
+            buttonRef.current.style.borderBottomRightRadius = '20px';
+        }
+    })
+
 
     const handleOutsideSearchBarClick = () => {
         setShowResults(false);
@@ -49,9 +63,14 @@ const SearchBar = ({ onPlayClick }) => {
     return (
         <OutsideClickDetector handleOutsideSearchBarClick={handleOutsideSearchBarClick}>
             <React.Fragment>
-                <SearchInput handleKeyPress={handleKeyPress} handleSearchClick={handleSearchClick} />
-                {/* {showResults ? <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} /> : null} */}
-                <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} />
+                <SearchInput
+                    inputRef={inputRef}
+                    buttonRef={buttonRef}
+                    handleKeyPress={handleKeyPress}
+                    handleSearchClick={handleSearchClick}
+                />
+                {showResults ? <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} /> : null}
+                {/* <ResultList videoList={searchResult} onPlayClick={(videoId, videoTitle) => handlePlay(videoId, videoTitle)} /> */}
             </React.Fragment>
         </OutsideClickDetector>
     );
